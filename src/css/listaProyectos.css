@@ -89,3 +89,25 @@ body{
 .process{
     background: linear-gradient(135deg, #f59e0b, #d97706);
 }
+/*estilos para la busqueda de proyectos*/
+/*buscar */
+.input-busqueda{
+    color: #334155;
+    width: 100%;
+    padding: 14px 18px;
+    margin-bottom: 35px;
+    border: none;
+    border-radius: 14px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    box-shadow:
+        0 6px 15px rgba(0,0,0,0.08);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-busqueda:focus{
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.12);
+    transform: scale(1.01);
+}
