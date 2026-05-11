@@ -7,10 +7,15 @@ const proyectoService = ( () => {
         {id: 4, titulo: "Educa+ Innovación", categoria: "Innovación educativa", estado: "En curso"},
         {id: 5, titulo: "Puentes de Conocimiento", categoria: "Inclusión Educativa", estado: "Finalizado"}
     ];
-
+    //obtener todos los proyectos
     const obtenerProyectos = () => [...proyectos];
+    //buscar proyecto por titulo
+    const buscarProyecto = (texto) => {
 
-    return {obtenerProyectos};
+        return proyectos.filter(p => p.titulo.toLowerCase().includes(texto.toLowerCase()));
+
+    };
+    return {obtenerProyectos, buscarProyecto};
 })();
 
 export default proyectoService;
