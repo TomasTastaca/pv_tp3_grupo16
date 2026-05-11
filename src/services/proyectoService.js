@@ -9,13 +9,19 @@ const proyectoService = ( () => {
     ];
     //obtener todos los proyectos
     const obtenerProyectos = () => [...proyectos];
+
+     //agregar proyecto
+    const agregarProyecto = (nuevo) => {
+        proyectos.push(nuevo);
+    };
+
     //buscar proyecto por titulo
     const buscarProyecto = (texto) => {
 
         return proyectos.filter(p => p.titulo.toLowerCase().includes(texto.toLowerCase()));
 
     };
-    return {obtenerProyectos, buscarProyecto};
+    return {obtenerProyectos, buscarProyecto, agregarProyecto};
 })();
 
 export default proyectoService;
