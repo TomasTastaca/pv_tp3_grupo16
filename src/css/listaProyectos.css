@@ -111,3 +111,45 @@ body{
         0 8px 20px rgba(0,0,0,0.12);
     transform: scale(1.01);
 }
+
+/*agregar proyectos*/
+.form-container {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.form-agregar {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.form-agregar input,.form-agregar select{
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: rgb(175, 169, 169);
+    color: #1e293b;
+    outline: none;
+}
+
+.btn-add {
+    background-color: #001f54;
+    font-size: 1rem;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-add:hover {
+    background-color: #003a9c;
+}
