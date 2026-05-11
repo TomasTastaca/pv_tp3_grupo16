@@ -4,10 +4,17 @@ import proyectoService from "../services/proyectoService"
 const ListaProyectos = () => {
     //estado para los obtener proyectos
     const [proyectos, setProyectos] = useState(proyectoService.obtenerProyectos());
-     //estado para agregar proyectos
+    // estado para eliminar proyectos
+    const handleEliminar = (id) => {
+        proyectoService.eliminarProyecto(id);
+        setProyectos(proyectoService.obtenerProyectos());
+    }
+    
+    //estado para agregar proyectos
     const [titulo, setTitulo] = useState("");
     const [categoria, setCategoria] = useState("");
     const [estado, setEstado] = useState("En curso");
+
 
     const manejarAgregar = (e) => {
         e.preventDefault();
@@ -104,6 +111,8 @@ const ListaProyectos = () => {
                                     {p.estado}
                                 </span>
                             </div>
+                            {/* boton de eliminar*/}
+                             <button className="btn-delete" onClick={() => handleEliminar(p.id)}>Eliminar</button>
                         </article>
                     ))}
                 </div>
