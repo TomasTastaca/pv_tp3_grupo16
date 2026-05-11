@@ -14,6 +14,11 @@ const proyectoService = ( () => {
     const agregarProyecto = (nuevo) => {
         proyectos.push(nuevo);
     };
+ // eliminar Proyecto
+ const eliminarProyecto = (id) => {
+        proyectos = proyectos.filter(proyecto => proyecto.id !== id)
+    } 
+
 
     //buscar proyecto por titulo
     const buscarProyecto = (texto) => {
@@ -21,7 +26,7 @@ const proyectoService = ( () => {
         return proyectos.filter(p => p.titulo.toLowerCase().includes(texto.toLowerCase()));
 
     };
-    return {obtenerProyectos, buscarProyecto, agregarProyecto};
+    return {obtenerProyectos, buscarProyecto, agregarProyecto, eliminarProyecto};
 })();
 
 export default proyectoService;
