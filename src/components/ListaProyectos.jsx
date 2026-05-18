@@ -1,43 +1,38 @@
 import { useState } from "react"
-import proyectoService from "../services/proyectoService"
+import proyectoService from "../services/proyectoService" 
 import ProyectoCard from "./ProyectoCard.jsx"
 import DetalleProyecto from "./DetalleProyecto.jsx"
 const ListaProyectos = () => {
-    //estado para los obtener proyectos
+    //estado para los proyectos
     const [proyectos, setProyectos] = useState(proyectoService.obtenerProyectos());
-    // estado para eliminar proyectos
+     // estado para eliminar proyectos
     const handleEliminar = (id) => {
         proyectoService.eliminarProyecto(id);
         setProyectos(proyectoService.obtenerProyectos());
     }
-    
-    //estado para agregar proyectos
-    const [titulo, setTitulo] = useState("");
-    const [categoria, setCategoria] = useState("");
-    const [estado, setEstado] = useState("En curso");
+    //estado para seleccionar proyecto
+    const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null);
+    //estado para el formulario-agregar proyectos
+    const [formulario ,setFormulario] = useState(
+    {titulo: "",
+    categoria: "", 
+    estado: "En curso"}
+            )      
+    const handleChange = (e)=> {
+      const {name,value} = e.target;
+      setFormulario({...formulario,[name]:value});
+      console.log(formulario);
+    }
+    const handleAgregar = (e) => {
+     e.preventDefault();
+     if (formulario.titulo === " ") return;
+           
+     proyectoService.agregarProyecto(formulario);
+     setFormulario({titulo: "", categoria: "", estado: "En curso"});
+     setProyectos(proyectoService.obtenerProyectos());
 
-
-    const manejarAgregar = (e) => {
-        e.preventDefault();
-        
-       
-        const nuevo = {
-            id: Date.now(), 
-            titulo,
-            categoria,
-            estado
-        };
-
-        
-        proyectoService.agregarProyecto(nuevo);
-        setProyectos(proyectoService.obtenerProyectos());
-
-        
-        setTitulo("");
-        setCategoria("");
-    };
-    
-    //estado para la busqueda proyectos
+ }
+    //estado para la busqueda
     const [busqueda, setBusqueda] = useState("");
 
     const handleBuscar = (e) => {
@@ -53,11 +48,27 @@ const ListaProyectos = () => {
         }
 
     };
+    //ver detalle del proyecto
+    const handleVerDetalle =(id) =>{
+        const proyecto = proyectoService.obtenerProyectoPorId(id);
+        setProyectoSeleccionado(proyecto);
+        console.log(proyecto);
+    } 
+    //renderizado condicional
+    if (proyectoSeleccionado) {
+        return (
+            <DetalleProyecto    
+                proyecto={proyectoSeleccionado}
+                onVolver={() => setProyectoSeleccionado(null)}
+            />
+        //si hay un proyecto seleccionado, mostrar el detalle
+        );
+    }
 
     return(
         <div className="container">
             <h2>Lista de Proyectos Educativos</h2>
-              {/*buscar proyectos*/}
+             {/*buscar proyectos*/}
             <input
                 type="text"
                 placeholder="Buscar proyecto..."
@@ -65,21 +76,23 @@ const ListaProyectos = () => {
                 onChange={handleBuscar}
                 className="input-busqueda"
             />
-             {/*agregar proyectos*/}
+           {/*agregar proyectos-formulario*/}
              <div className="form-container">
-                <form onSubmit={manejarAgregar} className="form-agregar">
+                <form onSubmit={handleAgregar} className="form-agregar">
                     <input 
-                        type="text" 
+                        type="text"
+                        name="titulo"
                         placeholder="Título del proyecto" 
-                        value={titulo}
-                        onChange={(e) => setTitulo(e.target.value)}
+                        value={formulario.titulo}
+                        onChange={handleChange}
                         required 
                     />
                    <select
-                     value={categoria}
-                    onChange={(e) => setCategoria(e.target.value)}
-                    required
->
+                     name="categoria"
+                     value={formulario.categoria}
+                     onChange={handleChange}
+                     required
+                    >
                      <option value="">Seleccionar Categoría</option>
 
                      <option value="Tecnología Educativa">Tecnología Educativa</option>
@@ -92,7 +105,11 @@ const ListaProyectos = () => {
 
                     </select>
 
-                    <select value={estado} onChange={(e) => setEstado(e.target.value)}>
+                    <select 
+                    name="estado"
+                    value={formulario.estado} 
+                    onChange={handleChange}
+                    required>
                         <option value="En curso">En curso</option>
                         <option value="Finalizado">Finalizado</option>
                     </select>
@@ -100,21 +117,12 @@ const ListaProyectos = () => {
                 </form>
             </div>
 
-            {/* lista de proyectos */}
+           {/*listado de tarjetas */}
+            {/*obtener proyectos*/}
             <section className="grid-proyectos">
                 <div>
                     {proyectos.map(p=>(
-                        <article key={p.id} className="card">
-                            <div className="card-content">
-                                <h3>{p.titulo}</h3>
-                                <p><strong>Categoria:</strong>{p.categoria}</p>
-                                <span className={`badge ${p.estado === "Finalizado" ? "done" : "process"}`}>
-                                    {p.estado}
-                                </span>
-                            </div>
-                            {/* boton de eliminar*/}
-                             <button className="btn-delete" onClick={() => handleEliminar(p.id)}>Eliminar</button>
-                        </article>
+                      <ProyectoCard key={p.id} proyecto={p} onVerDetalle={handleVerDetalle} onEliminar={handleEliminar}/>
                     ))}
                 </div>
             </section>

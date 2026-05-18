@@ -62,39 +62,18 @@
 
 .card-actions{
     display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+    flex-direction: column; 
+    align-items: center;    
+    gap: 12px;              
     margin-top: 20px;
     padding: 0 20px 20px;
 }
+
 /* BOTONES */
-
-.btn-delete{
-    display: block;
-    margin: 20px auto;
-    padding: 15px 22px;
-    border: none;
-    border-radius: 30px;
-    background: linear-gradient(135deg, #ef4444, #b91c1c);
-    color: white;
-    font-size: 0.85rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    cursor: pointer;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    transition: all 0.3s ease;
-}
-
-.btn-delete:hover{
-    transform: scale(1.05);
-    opacity: 0.9;
-}
 
 .btn-detail{
     display: block;
-    margin: 20px auto;
+    margin: 0; 
     padding: 15px 22px;
     border: none;
     border-radius: 30px;
@@ -107,45 +86,35 @@
     cursor: pointer;
     box-shadow: 0 6px 15px rgba(0,0,0,0.15);
     transition: all 0.3s ease;
+    width: 160px; 
+    text-align: center;
 }
 
 .btn-detail:hover{
     transform: scale(1.05);
     opacity: 0.9;
 }
-/*
 
-.btn-detail,
 .btn-delete{
-    padding: 14px 24px;
+    display: block;
+    margin: 0; 
+    padding: 15px 22px;
     border: none;
     border-radius: 30px;
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
     color: white;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
     cursor: pointer;
     box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-}
-
-.btn-detail{
-    background: linear-gradient(135deg, #0d6efd, #3b82f6);
-}
-
-.btn-detail:hover{
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(13,110,253,0.25);
-    opacity: 0.95;
-}
-
-.btn-delete{
-    background: linear-gradient(135deg, #ef4444, #b91c1c);
+    transition: all 0.3s ease;
+    width: 160px; 
+    text-align: center;
 }
 
 .btn-delete:hover{
-    transform: translateY(-2px);
+    transform: scale(1.05);
     opacity: 0.9;
 }
-*/

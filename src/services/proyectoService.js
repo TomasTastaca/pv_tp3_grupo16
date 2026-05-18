@@ -64,26 +64,32 @@ const proyectoService = ( () => {
             ]
         }
     ]
-    //obtener todos los proyectos
+    //obtener proyectos
     const obtenerProyectos = () => [...proyectos];
 
-     //agregar proyecto
+    //agregar proyecto-desestructuración
     const agregarProyecto = (nuevo) => {
-        proyectos.push(nuevo);
+    const proyectoConId = { ...nuevo, id: Date.now()};
+    proyectos = [...proyectos, proyectoConId];   
+    return proyectoConId;
     };
- // eliminar Proyecto
- const eliminarProyecto = (id) => {
+
+    // eliminar Proyecto
+    const eliminarProyecto = (id) => {
         proyectos = proyectos.filter(proyecto => proyecto.id !== id)
     } 
-
-
-    //buscar proyecto por titulo
+    //buscar proyecto
     const buscarProyecto = (texto) => {
 
         return proyectos.filter(p => p.titulo.toLowerCase().includes(texto.toLowerCase()));
 
     };
-    return {obtenerProyectos, buscarProyecto, agregarProyecto, eliminarProyecto};
+    //obtener proyecto por id
+    const obtenerProyectoPorId = (id) => {
+        return proyectos.find(p => p.id === id);
+    }
+    
+    return {obtenerProyectos, buscarProyecto, agregarProyecto,eliminarProyecto, obtenerProyectoPorId};
 })();
 
 export default proyectoService;
