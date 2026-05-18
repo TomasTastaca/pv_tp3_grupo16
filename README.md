@@ -13,6 +13,12 @@ El Trabajo Práctico N.º 3 tiene como objetivo introducir el desarrollo de apli
 A lo largo del práctico se trabaja con la estructura básica de un proyecto React, el uso de JSX para crear interfaces y la organización del código en componentes reutilizables como Header, Nav, Footer y ListaProyectos. También se implementa una capa de servicios en JavaScript para manejar la lógica de la aplicación, permitiendo obtener, agregar, buscar y eliminar proyectos.
 
 Además, se introduce el uso de hooks, especialmente useState, para administrar el estado de la aplicación y actualizar la interfaz automáticamente según las acciones del usuario. Asimismo, se aplican conceptos de programación en JavaScript, como funciones flecha y manejo de arrays, junto con la integración de estilos CSS dentro de un entorno React. El resultado final es una aplicación interactiva, organizada y adaptable a futuras mejoras.
+## Descripcion- Trabajo Practico N°3- React parte 2
+Esta segunda parte del trabajo práctico se profundizó el uso de React mediante la comunicación entre componentes utilizando props y la organización del código a través de la desestructuración de objetos. A lo largo del desarrollo se implementaron componentes reutilizables como "ProyectoCard.jsx" y "DetalleProyecto.jsx", permitiendo separar responsabilidades y mejorar la estructura general de la aplicación.
+
+Además, se amplió la información de los proyectos incorporando descripciones extendidas, enlaces a recursos y datos del equipo de trabajo, lo que permitió construir una interfaz más completa y dinámica. También se refactorizó el componente principal para evitar repetir HTML dentro del método .map(), logrando un código más limpio, mantenible y fácil de entender.
+
+Esta parte 2 permitió fortalecer conocimientos sobre estados, props, renderizado condicional y manejo de formularios en React.
 
 # React + Vite
 
