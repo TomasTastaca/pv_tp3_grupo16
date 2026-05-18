@@ -97,3 +97,20 @@ body{
 .btn-add:hover {
     background-color: #003a9c;
 }
+/*descripcion*/
+.input-descripcion{
+    width: 100%;
+    padding: 16px 18px;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    font-size: 1rem;
+    background-color: #e2e8f0;
+    color: #1e293b;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-descripcion:focus{
+    border-color: #2563eb;
+    box-shadow: 0 0 10px rgba(37,99,235,0.2);
+}
