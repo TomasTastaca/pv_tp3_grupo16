@@ -1,6 +1,7 @@
 import { useState } from "react"
 import proyectoService from "../services/proyectoService"
-
+import ProyectoCard from "./ProyectoCard.jsx"
+import DetalleProyecto from "./DetalleProyecto.jsx"
 const ListaProyectos = () => {
     //estado para los obtener proyectos
     const [proyectos, setProyectos] = useState(proyectoService.obtenerProyectos());
