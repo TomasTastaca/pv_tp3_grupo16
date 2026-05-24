@@ -1,17 +1,22 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import proyectoService from "../services/proyectoService" 
 import ProyectoCard from "./ProyectoCard.jsx"
 import DetalleProyecto from "./DetalleProyecto.jsx"
+import RegistroActividad from "./RegistroActividad.jsx"
+
 const ListaProyectos = () => {
     //estado para los proyectos
     const [proyectos, setProyectos] = useState(proyectoService.obtenerProyectos());
-     // estado para eliminar proyectos
+    // estado para eliminar proyectos
     const handleEliminar = (id) => {
         proyectoService.eliminarProyecto(id);
         setProyectos(proyectoService.obtenerProyectos());
     }
     //estado para seleccionar proyecto
     const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null);
+    //estado para la fecha de actualización
+    const [fechaActualizacion, setFechaActualizacion] = useState(null);
+    
     //estado para el formulario-agregar proyectos
     const [formulario ,setFormulario] = useState(
     {titulo: "",
@@ -100,6 +105,23 @@ const handleAgregar = (e) => {
         setProyectoSeleccionado(proyecto);
         console.log(proyecto);
     } 
+
+    useEffect(() => {
+
+    const ahora = new Date();
+    
+    const dia = String(ahora.getDate()).padStart(2, '0');
+    const mes = String(ahora.getMonth() + 1).padStart(2, '0'); 
+    const anio = ahora.getFullYear();
+    const horas = String(ahora.getHours()).padStart(2, '0');
+    const minutos = String(ahora.getMinutes()).padStart(2, '0');
+
+    const fecha = `${dia}/${mes}/${anio} a las ${horas}:${minutos} hs.`;
+    
+    setFechaActualizacion(fecha);
+}, [proyectos]);
+
+
     //renderizado condicional
     if (proyectoSeleccionado) {
         return (
@@ -220,6 +242,9 @@ const handleAgregar = (e) => {
                     ))}
                 </div>
             </section>
+            <div>
+                {<RegistroActividad fecha={fechaActualizacion} />}
+            </div>
         </div>
     );
 }

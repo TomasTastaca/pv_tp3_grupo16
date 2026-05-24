@@ -1,6 +1,7 @@
 import './css/styles.css';
 import './css/listaProyectos.css';
 import './css/layout.css';
+import './css/registroActividad.css';
 import ListaProyectos from './components/ListaProyectos'
 import Header from './components/Header'
 import Nav from './components/Nav'
