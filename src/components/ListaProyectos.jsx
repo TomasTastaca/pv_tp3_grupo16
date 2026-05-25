@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import proyectoService from "../services/proyectoService" 
 import ProyectoCard from "./ProyectoCard.jsx"
 import DetalleProyecto from "./DetalleProyecto.jsx"
@@ -17,6 +17,10 @@ const ListaProyectos = () => {
     //estado para la fecha de actualización
     const [fechaActualizacion, setFechaActualizacion] = useState(null);
     
+    //bandera para controlar la primera carga y no sea bucle infinito
+    const primeraCarga = useRef(true);
+
+
     //estado para el formulario-agregar proyectos
     const [formulario ,setFormulario] = useState(
     {titulo: "",
@@ -105,9 +109,16 @@ const handleAgregar = (e) => {
         setProyectoSeleccionado(proyecto);
         console.log(proyecto);
     } 
-
     useEffect(() => {
+    // Si es la primera carga, cambiamos la bandera y salimos
+    if (primeraCarga.current) {
+        primeraCarga.current = false;
+        return; 
+    }
 
+    // CAMBIO: Quitamos la doble seguridad que causaba el bloqueo. 
+    // Ahora cualquier cambio real en el estado 'proyectos' dispara la actualización del cartel.
+    console.log("¡El useEffect se ejecutó por una acción real!");
     const ahora = new Date();
     
     const dia = String(ahora.getDate()).padStart(2, '0');
@@ -120,6 +131,7 @@ const handleAgregar = (e) => {
     
     setFechaActualizacion(fecha);
 }, [proyectos]);
+   
 
 
     //renderizado condicional
