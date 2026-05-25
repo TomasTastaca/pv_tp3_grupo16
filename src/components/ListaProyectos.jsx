@@ -95,14 +95,10 @@ const handleAgregar = (e) => {
         const texto = e.target.value;
 
         setBusqueda(texto);
-
-        if(texto.trim() === ""){
-            setProyectos(proyectoService.obtenerProyectos());
-        }else{
-            setProyectos(proyectoService.buscarProyecto(texto));
-        }
-
     };
+
+    const proyectosFiltrados = proyectos.filter(p =>
+    p.titulo.toLowerCase().includes(busqueda.toLowerCase()));
     //ver detalle del proyecto
     const handleVerDetalle =(id) =>{
         const proyecto = proyectoService.obtenerProyectoPorId(id);
@@ -248,11 +244,9 @@ const handleAgregar = (e) => {
            {/*listado de tarjetas */}
             {/*obtener proyectos*/}
             <section className="grid-proyectos">
-                <div>
-                    {proyectos.map(p=>(
-                      <ProyectoCard key={p.id} proyecto={p} onVerDetalle={handleVerDetalle} onEliminar={handleEliminar}/>
-                    ))}
-                </div>
+                {proyectosFiltrados.map(p=>(
+                  <ProyectoCard key={p.id} proyecto={p} onVerDetalle={handleVerDetalle} onEliminar={handleEliminar}/>
+                ))}
             </section>
             <div>
                 {<RegistroActividad fecha={fechaActualizacion} />}
