@@ -20,6 +20,17 @@ Además, se amplió la información de los proyectos incorporando descripciones 
 
 Esta parte 2 permitió fortalecer conocimientos sobre estados, props, renderizado condicional y manejo de formularios en React.
 
+## Descripcion- Trabajo Practico N°3- React parte 3
+
+El TP 3 Parte 3 consiste en mejorar la aplicación de gestión de proyectos desarrollada en React, incorporando nuevas funcionalidades con el hook useEffect. El objetivo principal es que la aplicación pueda registrar automáticamente cuándo la lista de proyectos fue modificada, ya sea al agregar o eliminar un proyecto, mostrando en pantalla la fecha y hora de la última actualización.
+
+Para esto, se debe crear un componente llamado RegistroActividad, encargado de mostrar un mensaje con el siguiente formato:
+“Última actualización de la lista: DD/MM/AAAA a las HH:MM hs.”
+
+Además, el trabajo busca optimizar el comportamiento de la aplicación para evitar que este mensaje aparezca al iniciar la página por primera vez y también impedir que se actualice cuando el usuario utiliza el filtro de búsqueda, ya que esa acción no cambia realmente los datos de la lista. Como apoyo para esta mejora, se propone investigar el uso de useRef como mecanismo de control.
+
+Por otro lado, el TP también requiere reorganizar el código separando el formulario de carga de proyectos en un componente independiente llamado FormularioProyecto.jsx. Este componente deberá administrar sus propios estados internos y luego enviar la información del nuevo proyecto al componente principal mediante funciones pasadas por props.
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -36,3 +47,4 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
