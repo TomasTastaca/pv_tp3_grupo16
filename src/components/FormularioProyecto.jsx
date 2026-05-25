@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const FormularioProyecto = () => {
+const FormularioProyecto = ({onAgregar}) => {
 
     const [formulario, setFormulario] = useState({
         titulo: "",
@@ -49,7 +49,7 @@ const FormularioProyecto = () => {
             ]
         };
 
-        console.log(nuevoProyecto);
+        onAgregar(nuevoProyecto);
 
         setFormulario({
             titulo: "",
