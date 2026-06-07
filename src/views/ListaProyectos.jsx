@@ -17,8 +17,7 @@ const ListaProyectos = () => {
         proyectoService.agregarProyecto(nuevoProyecto);
         setProyectos(proyectoService.obtenerProyectos());
     }
-    //estado para seleccionar proyecto
-    const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null);
+    
     //estado para la fecha de actualización
     const [fechaActualizacion, setFechaActualizacion] = useState(null);
     
@@ -37,12 +36,7 @@ const ListaProyectos = () => {
 
     const proyectosFiltrados = proyectos.filter(p =>
     p.titulo.toLowerCase().includes(busqueda.toLowerCase()));
-    //ver detalle del proyecto
-    const handleVerDetalle =(id) =>{
-        const proyecto = proyectoService.obtenerProyectoPorId(id);
-        setProyectoSeleccionado(proyecto);
-        console.log(proyecto);
-    } 
+    
     useEffect(() => {
     // Si es la primera carga, cambiamos la bandera y salimos
     if (primeraCarga.current) {
@@ -68,16 +62,7 @@ const ListaProyectos = () => {
    
 
 
-    //renderizado condicional
-    if (proyectoSeleccionado) {
-        return (
-            <DetalleProyecto    
-                proyecto={proyectoSeleccionado}
-                onVolver={() => setProyectoSeleccionado(null)}
-            />
-        //si hay un proyecto seleccionado, mostrar el detalle
-        );
-    }
+    
 
     return(
         <div className="container">
@@ -97,7 +82,9 @@ const ListaProyectos = () => {
             {/*obtener proyectos*/}
             <section className="grid-proyectos">
                 {proyectosFiltrados.map(p=>(
-                  <ProyectoCard key={p.id} proyecto={p} onVerDetalle={handleVerDetalle} onEliminar={handleEliminar}/>
+                  <ProyectoCard key={p.id}
+                   proyecto={p} 
+                   onEliminar={handleEliminar}/>
                 ))}
             </section>
             <div>

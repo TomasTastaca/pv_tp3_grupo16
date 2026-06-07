@@ -1,6 +1,6 @@
 import "../css/proyectoCard.css";
-
-const ProyectoCard = ({proyecto, onVerDetalle, onEliminar}) => {
+import { Link } from "react-router-dom";
+const ProyectoCard = ({proyecto, onEliminar}) => { //quito onVerDetalle porque no se usa
     const {id, titulo, categoria, estado} = proyecto;
 
     return(
@@ -13,7 +13,7 @@ const ProyectoCard = ({proyecto, onVerDetalle, onEliminar}) => {
                     </span>
             </div>
             <div className="card-actions">
-                <button className="btn-detail" onClick={() => onVerDetalle(id)}>Ver Detalle</button>
+                <Link to={`/Proyectos/${id}`}>Ver Detalle</Link>
                 <button className="btn-delete" onClick={() => onEliminar(id)}>Eliminar</button>
             </div>
         </article>

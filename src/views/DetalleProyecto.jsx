@@ -1,6 +1,14 @@
 import '../css/detalleProyecto.css'
-
-const DetalleProyecto = ({proyecto,onVolver}) => {
+import { useParams, Link } from 'react-router-dom'
+import proyectoService from '../services/proyectoService';
+const DetalleProyecto = () => {
+//obtener el id de la url
+    const { id } = useParams()
+//obtener el proyecto por id 
+const proyecto = proyectoService.obtenerProyectoPorId(Number(id));
+if (!proyecto) {
+    return <div>Proyecto no encontrado</div>
+}
 
     return (
         <section className="detalle-container">
@@ -24,7 +32,8 @@ const DetalleProyecto = ({proyecto,onVolver}) => {
                     </p>
                 ))}
             </div>
-            <button className="btn-volver" onClick={onVolver}>Volver</button>
+            {/*<button className="btn-volver" onClick={onVolver}>Volver</button>*/}
+            <Link to="/Proyectos" className="btn-volver">Volver</Link>
         </section>
     )
 }
