@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react"
 import proyectoService from "../services/proyectoService" 
-import ProyectoCard from "./ProyectoCard.jsx"
+import ProyectoCard from "../components/ProyectoCard.jsx"
 import DetalleProyecto from "./DetalleProyecto.jsx"
-import RegistroActividad from "./RegistroActividad.jsx"
-import FormularioProyecto from "./FormularioProyecto.jsx"
+import RegistroActividad from "../components/RegistroActividad.jsx"
+import FormularioProyecto from "../components/FormularioProyecto.jsx"
 const ListaProyectos = () => {
     //estado para los proyectos
     const [proyectos, setProyectos] = useState(proyectoService.obtenerProyectos());
