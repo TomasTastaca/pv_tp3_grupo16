@@ -1,7 +1,7 @@
 import './css/styles.css';
-import './css/listaProyectos.css';
+//import './css/listaProyectos.css';
 import './css/layout.css';
-import './css/registroActividad.css';
+//import './css/registroActividad.css';
 import ListaProyectos from './views/ListaProyectos';
 import Header from './components/Header';
 import Nav from './components/Nav';
@@ -22,12 +22,12 @@ const App = () => {
       <main>  
         <Routes>
           <Route path="/" element={<Navigate to="/Inicio"/>}/>
-          <Route path="/Inicio" element={<Dashboard/>}/>
-          <Route path="/Proyectos" element={<ListaProyectos/>}/>
+          <Route path="/inicio" element={<Dashboard/>}/>
+          <Route path="/proyectos" element={<ListaProyectos/>}/>
           {/*"ruta dinamica" para ver los distinto de tipos de proyectos, en este caso tenemos 5*/}
-          <Route path="/Proyectos/:id" element={<DetalleProyecto/>}/>
+          <Route path="/proyectos/:id" element={<DetalleProyecto/>}/>
          
-          <Route path="/Perfil" element={<PerfilUsuario/>}/>
+          <Route path="/perfil" element={<PerfilUsuario/>}/>
 
           {/* <ListaProyectos/> */}
         </Routes>
