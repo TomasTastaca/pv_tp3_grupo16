@@ -31,6 +31,16 @@ Además, el trabajo busca optimizar el comportamiento de la aplicación para evi
 
 Por otro lado, el TP también requiere reorganizar el código separando el formulario de carga de proyectos en un componente independiente llamado FormularioProyecto.jsx. Este componente deberá administrar sus propios estados internos y luego enviar la información del nuevo proyecto al componente principal mediante funciones pasadas por props.
 
+## Descripcion- Trabajo Practico N°3- React parte 4
+
+En esta etapa del proyecto se incorporó React Router para gestionar la navegación entre las diferentes secciones de la aplicación de manera dinámica y sin recargar la página. Se implementaron rutas para acceder a las vistas principales del sistema, incluyendo el Dashboard, la lista de proyectos, el detalle de cada proyecto y el perfil de usuario, mejorando la organización y la experiencia de navegación.
+
+Además, se integró Material UI como biblioteca de componentes para modernizar la interfaz gráfica y proporcionar una apariencia más profesional y consistente. Se refactorizaron distintos elementos visuales utilizando componentes como Container, Paper, Card, Typography, Box y otros recursos ofrecidos por la biblioteca.
+
+También se reorganizó la estructura del proyecto separando las vistas y componentes en carpetas específicas, favoreciendo la reutilización de código, el mantenimiento de la aplicación y una mejor escalabilidad. Como complemento, se implementaron rutas dinámicas para la visualización de detalles de proyectos mediante parámetros en la URL, permitiendo acceder directamente a la información correspondiente de cada proyecto.
+
+El resultado es una aplicación más estructurada, con una interfaz moderna, navegación fluida y una arquitectura alineada con las buenas prácticas de desarrollo en React.
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
