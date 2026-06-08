@@ -1,4 +1,4 @@
-*{
+/*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -34,7 +34,7 @@ body{
 
 /*estilos para la busqueda de proyectos*/
 /*buscar */
-.input-busqueda{
+/*.input-busqueda{
     color: #334155;
     width: 100%;
     padding: 14px 18px;
@@ -56,7 +56,7 @@ body{
 }
 
 /*agregar proyectos*/
-.form-container {
+/*.form-container {
     background: white;
     padding: 20px;
     border-radius: 15px;
@@ -98,7 +98,7 @@ body{
     background-color: #003a9c;
 }
 /*descripcion*/
-.input-descripcion{
+/*.input-descripcion{
     width: 100%;
     padding: 16px 18px;
     border: 1px solid #cbd5e1;

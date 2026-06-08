@@ -1,166 +1,249 @@
 import { useState } from "react";
+import { Paper, Grid, TextField, MenuItem, Button, Typography, Box } from "@mui/material";
 
-const FormularioProyecto = ({onAgregar}) => {
+const FormularioProyecto = ({ onAgregar }) => {
+  const [formulario, setFormulario] = useState({
+    titulo: "",
+    categoria: "",
+    estado: "En curso",
+    descripcion: "",
+    pdf: "",
+    github: "",
+    drive: "",
+    integrante: "",
+    rol: ""
+  });
 
-    const [formulario, setFormulario] = useState({
-        titulo: "",
-        categoria: "",
-        estado: "En curso",
-        descripcion: "",
-        pdf: "",
-        github: "",
-        drive: "",
-        integrante: "",
-        rol: ""
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormulario({
+      ...formulario,
+      [name]: value
     });
+  };
 
-    const handleChange = (e) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-        const { name, value } = e.target;
+    if (formulario.titulo.trim() === "") return;
 
-        setFormulario({...formulario,[name]: value});
+    const nuevoProyecto = {
+      titulo: formulario.titulo,
+      categoria: formulario.categoria,
+      estado: formulario.estado,
+      descripcion: formulario.descripcion,
+      recursos: {
+        pdf: formulario.pdf,
+        github: formulario.github,
+        drive: formulario.drive
+      },
+      equipo: [
+        {
+          nombre: formulario.integrante,
+          rol: formulario.rol
+        }
+      ]
     };
 
-    const handleSubmit = (e) => {
+    onAgregar(nuevoProyecto);
 
-        e.preventDefault();
+    setFormulario({
+      titulo: "",
+      categoria: "",
+      estado: "En curso",
+      descripcion: "",
+      pdf: "",
+      github: "",
+      drive: "",
+      integrante: "",
+      rol: ""
+    });
+  };
 
-        if (formulario.titulo.trim() === "") return;
+  return (
+    <Paper
+      elevation={3}
+      sx={{
+        maxWidth: "1200px",
+        mx: "auto",
+        p: 4,
+        borderRadius: 4,
+        mb: 5
+      }}
+    >
+      <Typography
+        variant="h4"
+        align="center"
+        sx={{
+          mb: 4,
+          fontWeight: "bold",
+          color: "#001f54"
+        }}
+      >
+        Agregar Proyecto
+      </Typography>
 
-        const nuevoProyecto = {
+      <Box component="form" onSubmit={handleSubmit}>
+        <Grid container spacing={3}>
+          {/* FILA 1 */}
 
-            titulo: formulario.titulo,
-            categoria: formulario.categoria,
-            estado: formulario.estado,
+          <Grid size={{ xs: 12, md: 4 }}>
+            <TextField
+              fullWidth
+              label="Título del proyecto"
+              name="titulo"
+              value={formulario.titulo}
+              onChange={handleChange}
+              required
+            />
+          </Grid>
 
-            descripcion: formulario.descripcion,
+          <Grid size={{ xs: 12, md: 5 }}>
+            <TextField
+              select
+              fullWidth
+              label="Seleccionar Categoría"
+              name="categoria"
+              value={formulario.categoria}
+              onChange={handleChange}
+              required
+            >
+              <MenuItem value="Tecnología Educativa">
+                Tecnología Educativa
+              </MenuItem>
 
-            recursos: {
-                pdf: formulario.pdf,
-                github: formulario.github,
-                drive: formulario.drive
-            },
+              <MenuItem value="Inclusión Educativa">
+                Inclusión Educativa
+              </MenuItem>
 
-            equipo: [
-                {
-                    nombre: formulario.integrante,
-                    rol: formulario.rol
+              <MenuItem value="Aprendizaje basado en proyectos">
+                Aprendizaje basado en proyectos
+              </MenuItem>
+
+              <MenuItem value="Innovación Educativa">
+                Innovación Educativa
+              </MenuItem>
+            </TextField>
+          </Grid>
+
+          <Grid size={{ xs: 12, md: 3 }}>
+            <TextField
+              select
+              fullWidth
+              label="Estado"
+              name="estado"
+              value={formulario.estado}
+              onChange={handleChange}
+            >
+              <MenuItem value="En curso">
+                En curso
+              </MenuItem>
+
+              <MenuItem value="Finalizado">
+                Finalizado
+              </MenuItem>
+            </TextField>
+          </Grid>
+
+          {/* FILA 2 */}
+
+          <Grid size={12}>
+            <TextField
+              fullWidth
+              multiline
+              rows={3}
+              label="Descripción del proyecto"
+              name="descripcion"
+              value={formulario.descripcion}
+              onChange={handleChange}
+              required
+            />
+          </Grid>
+
+          {/* FILA 3 */}
+
+          <Grid size={{ xs: 12, md: 3 }}>
+            <TextField
+              fullWidth
+              label="Link PDF"
+              name="pdf"
+              value={formulario.pdf}
+              onChange={handleChange}
+            />
+          </Grid>
+
+          <Grid size={{ xs: 12, md: 3 }}>
+            <TextField
+              fullWidth
+              label="Link GitHub"
+              name="github"
+              value={formulario.github}
+              onChange={handleChange}
+            />
+          </Grid>
+
+          <Grid size={{ xs: 12, md: 3 }}>
+            <TextField
+              fullWidth
+              label="Link Drive"
+              name="drive"
+              value={formulario.drive}
+              onChange={handleChange}
+            />
+          </Grid>
+
+          <Grid size={{ xs: 12, md: 3 }}>
+            <TextField
+              fullWidth
+              label="Nombre integrante"
+              name="integrante"
+              value={formulario.integrante}
+              onChange={handleChange}
+            />
+          </Grid>
+
+          {/* FILA 4 */}
+
+          <Grid size={{ xs: 12, md: 4 }}>
+            <TextField
+              fullWidth
+              label="Rol integrante"
+              name="rol"
+              value={formulario.rol}
+              onChange={handleChange}
+            />
+          </Grid>
+
+          <Grid
+            size={{ xs: 12, md: 8 }}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <Button
+              variant="contained"
+              type="submit"
+              sx={{
+                backgroundColor: "#001f54",
+                minWidth: "220px",
+                py: 1.5,
+                fontWeight: "bold",
+                textTransform: "none",
+                "&:hover": {
+                  backgroundColor: "#003a9c"
                 }
-            ]
-        };
-
-        onAgregar(nuevoProyecto);
-
-        setFormulario({
-            titulo: "",
-            categoria: "",
-            estado: "En curso",
-            descripcion: "",
-            pdf: "",
-            github: "",
-            drive: "",
-            integrante: "",
-            rol: ""
-        });
-    };
-
-    return (
-        <div className="form-container">
-
-            <form onSubmit={handleSubmit} className="form-agregar">
-
-                <input
-                    type="text"
-                    name="titulo"
-                    placeholder="Título del proyecto"
-                    value={formulario.titulo}
-                    onChange={handleChange}
-                    required
-                />
-
-                <select
-                    name="categoria"
-                    value={formulario.categoria}
-                    onChange={handleChange}
-                    required
-                >
-                    <option value="">Seleccionar Categoría</option>
-
-                    <option value="Tecnología Educativa">Tecnología Educativa</option>
-
-                    <option value="Inclusión Educativa">Inclusión Educativa</option>
-
-                    <option value="Aprendizaje basado en proyectos">Aprendizaje basado en proyectos</option>
-
-                    <option value="Innovación Educativa">Innovación Educativa</option>
-                </select>
-
-                <select
-                    name="estado"
-                    value={formulario.estado}
-                    onChange={handleChange}
-                    required
-                >
-                    <option value="En curso">En curso</option>
-                    <option value="Finalizado">Finalizado</option>
-                </select>
-
-                <input
-                    type="text"
-                    name="descripcion"
-                    placeholder="Descripción del proyecto"
-                    value={formulario.descripcion}
-                    onChange={handleChange}
-                    className="input-descripcion"
-                    required
-                />
-
-                <input
-                    type="text"
-                    name="pdf"
-                    placeholder="Link PDF"
-                    value={formulario.pdf}
-                    onChange={handleChange}
-                />
-
-                <input
-                    type="text"
-                    name="github"
-                    placeholder="Link GitHub"
-                    value={formulario.github}
-                    onChange={handleChange}
-                />
-
-                <input
-                    type="text"
-                    name="drive"
-                    placeholder="Link Drive"
-                    value={formulario.drive}
-                    onChange={handleChange}
-                />
-
-                <input
-                    type="text"
-                    name="integrante"
-                    placeholder="Nombre integrante"
-                    value={formulario.integrante}
-                    onChange={handleChange}
-                />
-
-                <input
-                    type="text"
-                    name="rol"
-                    placeholder="Rol integrante"
-                    value={formulario.rol}
-                    onChange={handleChange}
-                />
-
-                <button type="submit" className="btn-add">Agregar Proyecto</button>
-
-            </form>
-
-        </div>
-    );
+              }}
+            >
+              Agregar Proyecto
+            </Button>
+          </Grid>
+        </Grid>
+      </Box>
+    </Paper>
+  );
 };
 
 export default FormularioProyecto;

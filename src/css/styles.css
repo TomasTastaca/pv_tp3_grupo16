@@ -6,7 +6,7 @@
 
 body{
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #f4f6f9;
+    background-color: #e5f6fd;
     color: #333;
     min-height: 100vh;
 }
@@ -18,4 +18,8 @@ a{
 
 ul{
     list-style: none;
+}
+main {
+  min-height: 100vh;
+  background-color: #e5f6fd;
 }
